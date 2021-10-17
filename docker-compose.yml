@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+  nestjs:
+    build: .
+    tty: true
+    ports:
+      - '3030:3000'
+    volumes:
+      - type: bind
+        source: .
+        target: /usr/src/app
+    command: 'yarn start:dev'
+    networks:
+      - shared-network
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - '3316:3306'
+    volumes:
+      - cinema_app_db:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    external: true
+
+volumes:
+  cinema_app_db:

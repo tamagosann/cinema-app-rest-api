@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    name: lintWithTest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: yarn install
+        run: yarn install
+      - name: run eslint
+        run: yarn lint
+# e2e実装後にここにstepを追加する
