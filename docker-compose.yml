@@ -13,16 +13,20 @@ services:
     command: 'yarn start:dev'
     networks:
       - shared-network
+    depends_on:
+      - mysql
   mysql:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: 'pass'
+      MYSQL_DATABASE: 'admin'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'pass'
     ports:
       - '3316:3306'
     volumes:
       - cinema_app_db:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password
     networks:
       - shared-network
 
