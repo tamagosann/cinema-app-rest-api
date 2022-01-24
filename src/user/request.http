@@ -1,0 +1,20 @@
+### find a user
+
+GET http://localhost:3030/user/3
+
+### update a user
+
+PATCH http://localhost:3030/user/3
+Content-Type: application/json
+
+{
+  "email": "bbb@bbb.bbb",
+  "password": "っっっっっcvc",
+  "username": "aikawa",
+  "icon": "red.com",
+  "iconColor": "red"
+}
+
+### delete a user
+
+DELETE http://localhost:3030/user/5

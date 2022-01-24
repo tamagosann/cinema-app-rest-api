@@ -1,0 +1,27 @@
+### signUp
+
+POST http://localhost:3030/auth/signup
+Content-Type: application/json
+
+{
+  "email": "eeq@eee.com",
+  "password": "fuck",
+  "username": "osushi",
+  "icon": "sss",
+  "iconColor": "red"
+}
+
+### login
+
+POST http://localhost:3030/auth/login
+Content-Type: application/json
+
+{
+  "email": "eee@eee.com",
+  "password": "fuck"
+}
+
+### logOut
+
+POST http://localhost:3030/auth/logout
+Content-Type: application/json
