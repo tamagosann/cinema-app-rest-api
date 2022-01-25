@@ -9,3 +9,19 @@ Content-Type: application/json
   "reviewTitle": "タイトル",
   "reviewOverview": "めちゃよかった"
 }
+
+### レビュー改訂
+PATCH http://localhost:3030/film/review/1
+Content-Type: application/json
+
+{
+  "userId": 123,
+  "star": 3,
+  "reviewDate": 21345,
+  "reviewTitle": "タイトル",
+  "reviewOverview": "めちゃめちゃよかった"
+}
+
+### レビュー取得
+GET http://localhost:3030/film/review?star=3&reviewDate=12345&reviewTitle=タイトル&reviewOverview=めちゃよかった
+Content-Type: application/json

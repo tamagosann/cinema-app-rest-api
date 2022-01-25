@@ -1,6 +1,6 @@
 import { IsNumber, IsString, Max, Min } from 'class-validator';
 
-export class CreateFilmReviewDto {
+export class UpdateFilmReviewDto {
   @IsNumber()
   @Min(0)
   @Max(5)

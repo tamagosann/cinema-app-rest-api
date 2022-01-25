@@ -6,6 +6,8 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../user.service';
 
+//インターセプターinterceptorは、すべてのguardの後に発動する。この順序大事。
+
 @Injectable()
 export class CurrentUserInterceptor implements NestInterceptor {
   constructor(private userService: UserService) {}
