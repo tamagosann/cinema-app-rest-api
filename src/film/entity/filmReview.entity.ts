@@ -14,6 +14,8 @@ export class FilmReview {
   @PrimaryGeneratedColumn()
   filmReviewId: number;
 
+  // 初期値を入れる場合は、defaultに入れる
+  // @Column({default: false})
   @Column()
   star: number;
 

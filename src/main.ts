@@ -7,11 +7,13 @@ const cookieSession = require('cookie-session');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-  app.use(
-    cookieSession({
-      keys: ['asdfasdf'],
-    }),
-  );
+  // ここで、cookieをセッションとして使っている。キーは暗号化。
+  // app.moduleでもおなじことができる
+  // app.use(
+  //   cookieSession({
+  //     keys: ['asdfasdf'],
+  //   }),
+  // );
   // ここでdtoから外れたパラメータは省くように設定。
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   const config = new DocumentBuilder()

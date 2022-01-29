@@ -4,7 +4,7 @@ POST http://localhost:3030/auth/signup
 Content-Type: application/json
 
 {
-  "email": "eeq@eee.com",
+  "email": "ee11@eee.com",
   "password": "fuck",
   "username": "osushi",
   "icon": "sss",
