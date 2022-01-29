@@ -1,6 +1,5 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-
 import { SsrController } from './ssr/ssr.controller';
 import { SsrService } from './ssr/ssr.service';
 import { SsrModule } from './ssr/ssr.module';

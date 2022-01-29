@@ -12,6 +12,11 @@ export class FilmService {
     @InjectRepository(FilmReview) private repo: Repository<FilmReview>,
   ) {}
 
+  async reviewFindOne(filmReviewId: number) {
+    const entity = await this.repo.findOne(filmReviewId);
+    return this.filmReviewEntityToDto(entity);
+  }
+
   reviewCreate(filmReviewDto: CreateFilmReviewDto, user: User) {
     const filmReview = this.repo.create(filmReviewDto);
     filmReview.user = user;
@@ -26,5 +31,23 @@ export class FilmService {
 
     Object.assign(filmReview, attrs);
     return this.repo.save(filmReview);
+  }
+
+  private filmReviewEntityToDto({
+    filmReviewId,
+    star,
+    reviewDate,
+    reviewTitle,
+    reviewOverview,
+    user,
+  }: FilmReview): FilmReviewDto {
+    return {
+      filmReviewId,
+      star,
+      reviewDate,
+      reviewTitle,
+      reviewOverview,
+      userId: user?.userId,
+    };
   }
 }
