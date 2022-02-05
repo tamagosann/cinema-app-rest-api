@@ -7,7 +7,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Exclude } from 'class-transformer';
 import { FilmReview } from 'src/film/entity/filmReview.entity';
 
 @Entity()
@@ -33,7 +32,7 @@ export class User {
   @Column()
   iconColor: string;
 
-  @OneToMany(() => FilmReview, (FilmReview) => FilmReview.user)
+  @OneToMany(() => FilmReview, (filmReview) => filmReview.user)
   filmReviews: FilmReview[];
 
   // こいつらは一旦インスタンスを作成してからsaveしないと発動しない

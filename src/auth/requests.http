@@ -1,14 +1,20 @@
+### sayHello
+
+Get http://localhost:3030/
+Content-Type: application/json
+
 ### signUp
 
 POST http://localhost:3030/auth/signup
 Content-Type: application/json
 
 {
-  "email": "ee11@eee.com",
+  "email": "aee11s@eees.coaam",
   "password": "fuck",
   "username": "osushi",
   "icon": "sss",
-  "iconColor": "red"
+  "iconColor": "red",
+  "admin": true
 }
 
 ### login

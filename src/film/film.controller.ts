@@ -18,14 +18,17 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
+import { catchError, map, Observable } from 'rxjs';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { AuthGUard } from 'src/guards/auth.guard';
 import { Serialize } from 'src/intercepters/serialize.interceptor';
 import { CurrentUser } from 'src/user/decorators/current-user.decorator';
 import { User } from 'src/user/entity/user.entity';
 import { ErrorDto } from 'src/utils/error.dto';
+import { FilmDaoForFindOne, FilmsDao } from './Dao/film.dao';
 import { CreateFilmReviewDto } from './Dto/create-film-review.dto';
 import { FilmReviewDto } from './Dto/filmReview.dto';
+import { GetFilmDto } from './Dto/get-film.dto';
 import {
   FilmReviewIdParamSchema,
   GetFilmReviewDto,
@@ -36,6 +39,15 @@ import { FilmService } from './film.service';
 @Controller('film')
 export class FilmController {
   constructor(private filmService: FilmService) {}
+
+  @Get()
+  getFilm(
+    @Query() { filmId, with_genres, page }: GetFilmDto,
+  ): Observable<
+    Promise<FilmsDao | FilmDaoForFindOne | FilmsDao[] | FilmDaoForFindOne[]>
+  > {
+    return this.filmService.filmsFind(filmId, with_genres, page);
+  }
 
   @ApiOperation({ summary: 'Get a filmReview identical to filmReviewId' })
   @ApiOkResponse({ description: 'Success', type: FilmReviewDto })
@@ -53,7 +65,7 @@ export class FilmController {
   getReview(
     @Query() { filmReviewId }: GetFilmReviewDto,
   ): Promise<FilmReviewDto> {
-    return this.filmService.reviewFindOne(filmReviewId);
+    return this.filmService.reviewFindOne(parseInt(filmReviewId));
   }
 
   @ApiCookieAuth()
