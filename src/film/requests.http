@@ -1,9 +1,16 @@
+### 映画取得
+GET http://localhost:3030/film?filmId=902
+Content-Type: application/json
+
+### 映画取得2
+GET http://localhost:3030/film?with_genres=28&page=1
+Content-Type: application/json
+
 ### レビュー作成
 POST http://localhost:3030/film/review
 Content-Type: application/json
 
 {
-  "userId": 123,
   "star": 3,
   "reviewDate": 21345,
   "reviewTitle": "タイトル",
@@ -23,5 +30,5 @@ Content-Type: application/json
 }
 
 ### レビュー取得
-GET http://localhost:3030/film/review?star=3&reviewDate=12345&reviewTitle=タイトル&reviewOverview=めちゃよかった
+GET http://localhost:3030/film/review?filmReviewId=2
 Content-Type: application/json

@@ -21,8 +21,12 @@ export class UserService {
       icon,
       iconColor,
     });
+    console.log('aaa');
+    console.log(user);
 
-    return this.repo.save(user);
+    const result = this.repo.save(user);
+    console.log(result);
+    return result;
   }
 
   findOne(userId: number) {

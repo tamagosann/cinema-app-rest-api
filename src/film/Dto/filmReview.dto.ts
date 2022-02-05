@@ -41,8 +41,27 @@ export class FilmReviewDto {
     description: 'userId of the Reviewer',
     example: 1,
   })
-  // filmReviewEntityToDtoで行うためコメントアウト
-  // @Transform(({ obj }) => obj.user.userId)
   @Expose()
   userId: number;
+
+  @ApiProperty({
+    description: 'username of the Reviewer',
+    example: 'ひろき',
+  })
+  @Expose()
+  username: string;
+
+  @ApiProperty({
+    description: 'iconUrl of the Reviewer',
+    example: 'https://ss.com',
+  })
+  @Expose()
+  icon: string;
+
+  @ApiProperty({
+    description: 'iconColor of the Reviewer',
+    example: 'https://ss.com',
+  })
+  @Expose()
+  iconColor: string;
 }

@@ -1,6 +1,6 @@
 ### find a user
 
-GET http://localhost:3030/user/3
+GET http://localhost:3030/user/6
 
 ### update a user
 

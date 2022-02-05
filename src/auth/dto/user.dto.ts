@@ -1,4 +1,5 @@
 import { Exclude, Expose } from 'class-transformer';
+import { FilmReview } from 'src/film/entity/filmReview.entity';
 
 export class UserDto {
   @Expose()
@@ -18,4 +19,7 @@ export class UserDto {
 
   @Expose()
   iconColor: string;
+
+  @Expose()
+  filmReviews: FilmReview[];
 }

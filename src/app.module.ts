@@ -12,15 +12,12 @@ import { PeopleModule } from './people/people.module';
 import { AuthModule } from './auth/auth.module';
 import { User } from './user/entity/user.entity';
 import { FilmReview } from './film/entity/filmReview.entity';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 // eslint-disable-next-line
 const cookieSession = require('cookie-session');
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
-    }),
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'mysql',
@@ -40,15 +37,4 @@ const cookieSession = require('cookie-session');
   controllers: [AppController, SsrController],
   providers: [SsrService],
 })
-export class AppModule {
-  constructor(private configService: ConfigService) {}
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(
-        cookieSession({
-          keys: [this.configService.get('COOKIE_KEY')],
-        }),
-      )
-      .forRoutes('*');
-  }
-}
+export class AppModule {}

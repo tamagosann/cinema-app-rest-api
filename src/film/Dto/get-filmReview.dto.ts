@@ -1,9 +1,9 @@
 import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class GetFilmReviewDto {
-  @IsNumber()
-  filmReviewId: number;
+  @IsString()
+  filmReviewId: string;
   // @Transform(({ value }) => parseInt(value))
   // @IsNumber()
   // @Min(0)
