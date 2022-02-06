@@ -82,14 +82,12 @@ export class FilmService {
     const entity = await this.repo.findOne(filmReviewId, {
       relations: ['user'],
     });
-    console.log(entity);
     return this.filmReviewEntityToDto(entity);
   }
 
   async reviewCreate(filmReviewDto: CreateFilmReviewDto, user: User) {
     const filmReview = this.repo.create(filmReviewDto);
     filmReview.user = user;
-    console.log(filmReview);
     return await this.repo.save(filmReview);
   }
 
