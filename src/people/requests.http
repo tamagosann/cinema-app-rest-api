@@ -1,0 +1,3 @@
+### 人気俳優取得
+GET http://localhost:3030/people?page=1
+Content-Type: application/json

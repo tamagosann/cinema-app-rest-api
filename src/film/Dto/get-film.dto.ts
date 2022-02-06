@@ -1,3 +1,4 @@
+import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { Transform } from 'class-transformer';
 import { IsNumber, IsOptional } from 'class-validator';
 
@@ -17,3 +18,21 @@ export class GetFilmDto {
   @IsNumber()
   page?: number;
 }
+
+export const FilmIdParamSchema: SchemaObject = {
+  default: 111,
+  example: 10,
+  type: 'number',
+};
+
+export const WithGenresParamSchema: SchemaObject = {
+  default: 111,
+  example: 10,
+  type: 'number',
+};
+
+export const PageParamSchema: SchemaObject = {
+  default: 111,
+  example: 10,
+  type: 'number',
+};
