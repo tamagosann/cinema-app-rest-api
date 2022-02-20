@@ -9,13 +9,17 @@ import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { promisify } from 'util';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
+import { JwtService } from '@nestjs/jwt';
 
 const scrypt = promisify(_scrypt);
 
 // サービスの中で他のサービスを使うのはアリ
 @Injectable()
 export class AuthService {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async signUp(
     username: string,
@@ -49,7 +53,18 @@ export class AuthService {
       iconColor,
     );
 
-    return user;
+    // トークン作成
+    const token = await this.jwtService.signAsync(
+      {
+        id: user.userId,
+        email: user.email,
+      },
+      {
+        expiresIn: '1d',
+      },
+    );
+
+    return { token, user };
   }
 
   async logIn(email: string, password: string) {
@@ -65,11 +80,48 @@ export class AuthService {
     if (storedHash !== hash.toString('hex')) {
       throw new BadRequestException('bad password');
     }
+    const token = await this.jwtService.signAsync(
+      {
+        id: user.userId,
+        email: user.email,
+      },
+      {
+        expiresIn: '1d',
+      },
+    );
+    return { token };
+  }
 
-    return user;
+  async postLoginUser(token: string) {
+    const { id } = this.jwtService.decode(token) as { id: number };
+    const user = await this.userService.findOne(id);
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+
+    const newToken = await this.jwtService.signAsync(
+      {
+        id: user.userId,
+        email: user.email,
+      },
+      {
+        expiresIn: '1d',
+      },
+    );
+
+    return { token: newToken, user };
   }
 
   logOut() {
     return 'hoge';
+  }
+
+  async validateUserById(userId: number): Promise<boolean> {
+    const user = await this.userService.findOne(userId);
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

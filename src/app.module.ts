@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { User } from './user/entity/user.entity';
 import { FilmReview } from './film/entity/filmReview.entity';
 import { ConfigModule } from '@nestjs/config';
+import { LoggerMiddleware } from './intercepters/logger.middleware';
 // eslint-disable-next-line
 const cookieSession = require('cookie-session');
 @Module({
@@ -37,4 +38,8 @@ const cookieSession = require('cookie-session');
   controllers: [AppController, SsrController],
   providers: [SsrService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes();
+  }
+}
