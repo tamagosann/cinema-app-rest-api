@@ -9,8 +9,8 @@ POST http://localhost:3030/auth/signup
 Content-Type: application/json
 
 {
-  "email": "aee11s@eees.coaam",
-  "password": "fuck",
+  "email": "test@eee.com",
+  "password": "1234567890",
   "username": "osushi",
   "icon": "sss",
   "iconColor": "red",
@@ -23,7 +23,7 @@ POST http://localhost:3030/auth/login
 Content-Type: application/json
 
 {
-  "email": "eee@eee.com",
+  "email": "aoi@eees.coaam",
   "password": "fuck"
 }
 
@@ -31,3 +31,9 @@ Content-Type: application/json
 
 POST http://localhost:3030/auth/logout
 Content-Type: application/json
+
+### profile
+
+GET http://localhost:3030/auth/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhb2lAZWVlcy5jb2FhbSIsImlhdCI6MTY0NDc1MTc1MSwiZXhwIjoxNjQ0NzUxODExfQ.v_xlSP6u1K_TYlUGMGIopqVdMs6AYXUeVh7kPX3Q8bM

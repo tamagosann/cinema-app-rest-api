@@ -1,7 +1,6 @@
 import { IsEmail, IsString } from 'class-validator';
 
 export class CreateUserDto {
-  // これをつけることで、string以外でリクエストがきたらそもそもエラーにできる。
   @IsString()
   username: string;
 

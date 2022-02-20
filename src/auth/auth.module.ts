@@ -5,10 +5,15 @@ import { User } from 'src/user/entity/user.entity';
 import { UserService } from 'src/user/user.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-
+import { JwtModule } from '@nestjs/jwt';
+import { jwtCOnstants } from 'src/common/constants/jwt.constants';
+import { JwtStrategyService } from './jwt-strategy/jwt-strategy/jwt-strategy.service';
 @Module({
-  imports: [TypeOrmModule.forFeature([User, FilmReview])],
+  imports: [
+    JwtModule.register({ secret: jwtCOnstants.secret }),
+    TypeOrmModule.forFeature([User, FilmReview]),
+  ],
   controllers: [AuthController],
-  providers: [AuthService, UserService],
+  providers: [AuthService, UserService, JwtStrategyService],
 })
 export class AuthModule {}
